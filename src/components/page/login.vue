@@ -15,10 +15,14 @@
               <p class="tips">Tips : 用户名和密码随便填。</p>
           </el-form>
       </div>
+      <div class="loading-mask" v-if="passLoad">
+        <vue-loading type="spiningDubbles" color="#97a8be" :size="{ width: '150px', height: '150px' }" class="loading"></vue-loading>
+      </div>
   </div>
 </template>
 
 <script>
+import vueLoading from "vue-loading-template";
 export default {
   name: "login",
   data() {
@@ -30,22 +34,29 @@ export default {
       rules: {
         username: [{ required: true, message: "请输入用户名", tigger: "blur" }],
         password: [{ required: true, message: "请输入密码", tigger: "blur" }]
-      }
+      },
+      passLoad: false
     };
   },
+  components: {
+    vueLoading
+  },
   methods: {
-      submitForm: function(formName) {
-          let that = this;
-          this.$refs[formName].validate(value => {
-              if(value) {
-                  localStorage.setItem('ms_username', that.ruleForm.username);
-                  that.$router.push('/readme');
-              } else {
-                  alert('error submit');
-                  return;
-              }
-          });
-      }
+    submitForm: function(formName) {
+      let that = this;
+      this.$refs[formName].validate(value => {
+        if (value) {
+          localStorage.setItem("ms_username", that.ruleForm.username);
+          that.passLoad = true;
+          setTimeout(() => {
+            that.$router.push("/readme");
+          }, 2000);
+        } else {
+          alert("error submit");
+          return;
+        }
+      });
+    }
   }
 };
 </script>
@@ -87,5 +98,16 @@ export default {
   font-size: 12px;
   line-height: 30px;
   color: #999;
+}
+.loading-mask {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, .8);
+  z-index: 111;
+}
+.loading {
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 </style>

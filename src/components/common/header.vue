@@ -12,16 +12,24 @@
             </el-dropdown-menu>
           </el-dropdown>
       </div>
+      <div class="loading-mask" v-if="passLoad">
+        <vue-loading type="bars" color="#97a8be" :size="{ width: '80px', height: '80px' }" class="loading"></vue-loading>
+      </div>
   </div>
 </template>
 
 <script>
+import vueLoading from 'vue-loading-template'
 export default {
   name: "myHeader",
   data() {
     return {
-      name: "tobee"
+      name: "tobee",
+      passLoad: false
     };
+  },
+  components: {
+    vueLoading
   },
   computed: {
     username() {
@@ -31,9 +39,13 @@ export default {
   },
   methods: {
     handleCommand(command) {
+      let that = this;
         if(command == 'loginout') {
             localStorage.removeItem('ms_username');
-            this.$router.push('/login');
+            that.passLoad = true;
+            setTimeout(() => {
+              that.$router.push('/login');
+            }, 2000)
         }
     }
   }
@@ -79,5 +91,15 @@ export default {
 }
 .el-dropdown-menu__item {
   text-align: center;
+}
+.loading-mask {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, .4);
+}
+.loading {
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 </style>
