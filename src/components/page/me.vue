@@ -6,7 +6,7 @@
       </el-breadcrumb>
   </div>
   <div class="ms-doc">
-      <h3>README.md</h3>
+      <h3>ME</h3>
       <article>
           <h1>manage-system-up</h1>
             <p>基于Vue.js 2.x系列 + Element UI 的后台管理系统解决方案</p>
@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: "readme"
+  name: "me"
 };
 </script>
 

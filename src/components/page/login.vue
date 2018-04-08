@@ -49,7 +49,7 @@ export default {
           localStorage.setItem("ms_username", that.ruleForm.username);
           that.passLoad = true;
           setTimeout(() => {
-            that.$router.push("/readme");
+            that.$router.push("/me");
           }, 2000);
         } else {
           alert("error submit");

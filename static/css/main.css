@@ -58,7 +58,7 @@ a{text-decoration: none}
 .el-time-panel__content::after, .el-time-panel__content::before {
     margin-top: -7px;
 }
-/*Readme*/
+/*Me*/
 .ms-doc .el-checkbox__input.is-disabled+.el-checkbox__label{
     color: #333;
     cursor: pointer;
